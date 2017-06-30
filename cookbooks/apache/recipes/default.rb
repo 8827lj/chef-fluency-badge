@@ -8,9 +8,9 @@
 
 # using node attirbute platform_family to determine which apache pkg to install on a node based on OS family - debian or rhel 
 
-if node('platform_family') == "rhel"
+if node['platform_family'] == "rhel"
 	pacakge = "httpd"
-elsif node('platform_family') == "debian"
+elsif node['platform_family'] == "debian"
 	pacakge = "apache2"
 end
 
@@ -18,7 +18,7 @@ end
 # the variable "package" below is the referenced in the above if-then-else statement. value will be dynamically
 # applied on next convergence, based on platform_family attribute  of the node. 
 
-#apache2 is the resource name
+# apache2 is the resource name
 
 package 'apache2' do 
 	package_name package
