@@ -4,13 +4,9 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
-# for the pkg resource type, in the absence of an action, the default is install
+# for the pkg resource type, in the absence of an action, the default is to install
 
-
-# using node attribute information to decide which pkg to install 
-# if this node's platform_family attribute = rhel, install the httpd pkg
-# elseif the node's platform_family pkg = debian, install the apache2 pkg.
-
+# using node attirbute platform_family to determine which apache pkg to install on a node based on OS family - debian or rhel 
 
 if node('platform_family') == "rhel"
 	pacakge = "httpd"
@@ -19,8 +15,10 @@ elsif node('platform_family') == "debian"
 end
 
 
-# the variable "package" below is the one referenced in the above if-then-else statement. value will be dynamically
-# applied on next convergence, based on platform_family of the node. 
+# the variable "package" below is the referenced in the above if-then-else statement. value will be dynamically
+# applied on next convergence, based on platform_family attribute  of the node. 
+
+#apache2 is the resource name
 
 package 'apache2' do 
 	package_name package
